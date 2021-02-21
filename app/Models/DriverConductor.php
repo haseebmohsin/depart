@@ -19,5 +19,6 @@ class DriverConductor extends Model
         'CNIC',
         'contact',
         'address',
+        'occupation',
     ];
 }

@@ -21,7 +21,7 @@ class CreateTravelersTable extends Migration
             $table->string('department');
             $table->string('gender');
             $table->string('challan');
-            $table->string('status');
+            $table->boolean('is_printed')->default(0);
             $table->timestamps();
         });
     }

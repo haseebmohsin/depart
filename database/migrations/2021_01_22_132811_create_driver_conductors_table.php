@@ -18,6 +18,7 @@ class CreateDriverConductorsTable extends Migration
             $table->string('name');
             $table->string('CNIC')->unique();
             $table->string('contact');
+            $table->string('occupation');
             $table->string('address');
             $table->timestamps();
         });

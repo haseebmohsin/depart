@@ -1,7 +1,7 @@
 <div class="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-4">
     <div class="max-w-3xl w-full space-y-8 px-8 py-6 pt-2 border border-indigo-600 bg-gray-100">
         <div>
-            <img class="mx-auto h-26 w-auto" src="images/depart-logo.png" alt="Workflow">
+            <img class="mx-auto h-26 w-auto" src="images/depart-logo.png" alt="logo">
             <h2 class="text-center text-xl font-extrabold text-gray-700">
                 Please fill the following details carefully!
             </h2>
