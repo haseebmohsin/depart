@@ -81,7 +81,6 @@ class Dashboard extends Component
         $this->search = false;
     }
 
-
     public function delete($id)
     {
         Traveler::find($id)->delete();
