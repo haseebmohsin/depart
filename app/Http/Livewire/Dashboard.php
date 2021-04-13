@@ -12,10 +12,16 @@ class Dashboard extends Component
     use WithPagination;
     public $searchQuery;
     protected $queryString = ['searchQuery'];
-    
+    protected $listeners = [
+        'newRequests' => 'newRequests',
+        'allRecords' => 'allRecords',
+        'allMales' => 'allMales',
+        'allFemales' => 'allFemales',
+    ];
+
     public $travelersSidebar = true;
     public $driversSidebar = false;
-    
+
     public $search = true;
     public $newRequests = true;
     public $allRecords = false;
@@ -24,22 +30,22 @@ class Dashboard extends Component
 
     public function render()
     {
-        if($this->searchQuery){
+        if ($this->searchQuery) {
             $this->search = true;
         }
 
-        if($this->searchQuery && $this->search){
+        if ($this->searchQuery && $this->search) {
             $searchQuery = '%' . $this->searchQuery . '%';
             $travelers = Traveler::where('name', 'like', $searchQuery)->paginate(30);
-        }elseif($this->newRequests){
+        } elseif ($this->newRequests) {
             $travelers = Traveler::where('is_printed', 0)->paginate(30);
-        }elseif($this->allRecords){
+        } elseif ($this->allRecords) {
             $travelers = Traveler::paginate(30);
-        }elseif($this->allMales){
+        } elseif ($this->allMales) {
             $travelers = Traveler::where('gender', 'male')->paginate(30);
-        }elseif($this->allFemales){
+        } elseif ($this->allFemales) {
             $travelers = Traveler::where('gender', 'female')->paginate(30);
-        }else{
+        } else {
             $travelers = Traveler::where('is_printed', 0)->paginate(30);
         }
 
@@ -52,28 +58,32 @@ class Dashboard extends Component
         ]);
     }
 
-    public function newRequests(){
+    public function newRequests()
+    {
         $this->newRequests = true;
         $this->allRecords = false;
         $this->allMales = false;
         $this->allFemales = false;
         $this->search = false;
     }
-    public function allRecords(){
+    public function allRecords()
+    {
         $this->allRecords = true;
         $this->newRequests = false;
         $this->allMales = false;
         $this->allFemales = false;
         $this->search = false;
     }
-    public function allMales(){
+    public function allMales()
+    {
         $this->allMales = true;
         $this->newRequests = false;
         $this->allRecords = false;
         $this->allFemales = false;
         $this->search = false;
     }
-    public function allFemales(){
+    public function allFemales()
+    {
         $this->allFemales = true;
         $this->newRequests = false;
         $this->allRecords = false;
@@ -84,18 +94,16 @@ class Dashboard extends Component
     public function delete($id)
     {
         Traveler::find($id)->delete();
-        session()->flash('deleteSuccess',"Traveler's data deleted successfully");
+        session()->flash('deleteSuccess', "Traveler's data deleted successfully");
     }
-    
+
     public function updatePrintStatus($id)
     {
         $traveler = Traveler::find($id);
-        if( $traveler) 
-        {
+        if ($traveler) {
             $traveler->is_printed = 1;
             $traveler->save();
-            session()->flash('printedStatus',"Traveler's data removed from new Requests queue");
+            session()->flash('printedStatus', "Traveler's data removed from new Requests queue");
         }
     }
-
 }
