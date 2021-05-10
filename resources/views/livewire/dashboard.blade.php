@@ -61,8 +61,7 @@
                     @endif
                 </div>
                 <!-- CTA -->
-                <div class="p-4 mb-8 bg-blue-600 rounded-lg shadow-md">
-                </div>
+                <div class="flex p-2 mb-6 bg-gray-300 rounded-lg shadow-md"></div>
                 <!-- Cards -->
                 <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
                     <!-- Card -->
@@ -208,6 +207,10 @@
                                         {{ $traveler->created_at->format('d/m/Y') }}
                                     </td>
                                     <td class="px-4 py-3 text-sm">
+                                        <a wire:click="print({{ $traveler->id }})"
+                                            class="px-3 py-2 mr-2 cursor-pointer font-semibold text-white bg-blue-500 rounded-md">
+                                            Print
+                                        </a>
                                         @if ($traveler->is_printed == 0)
                                         <a wire:click="updatePrintStatus({{ $traveler->id }})"
                                             class="px-3 py-2 mr-2 cursor-pointer font-semibold text-white bg-blue-500 rounded-md">

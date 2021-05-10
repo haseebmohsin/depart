@@ -106,4 +106,9 @@ class Dashboard extends Component
             session()->flash('printedStatus', "Traveler's data removed from new Requests queue");
         }
     }
+
+    public function print($id)
+    {
+        dd($id);
+    }
 }

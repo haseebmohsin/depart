@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100 sticky top-0">
+<nav x-data="{ open: false }" class="bg-white border-b border-gray-100 sticky top-0" style="z-index: 1 !important;">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto pl-2 pr-4 sm:px-6 lg:pl-4 lg:pr-8">
         <div class="flex justify-between h-16">
@@ -24,7 +24,11 @@
                     </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('driversConductors') }}" class="text-lg text-gray-700"
                         :active="request()->routeIs('driversConductors')">
-                        {{ __('Drivers and Conductors') }}
+                        {{ __('Drivers') }}
+                    </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('buses') }}" class="text-lg text-gray-700"
+                        :active="request()->routeIs('buses')">
+                        {{ __('Buses') }}
                     </x-jet-nav-link>
 
                 </div>
@@ -168,7 +172,10 @@
             </x-jet-responsive-nav-link>
             <x-jet-responsive-nav-link href="{{ route('driversConductors') }}"
                 :active="request()->routeIs('driversConductors')">
-                {{ __('Drivers and Conductors') }}
+                {{ __('Drivers') }}
+            </x-jet-responsive-nav-link>
+            <x-jet-responsive-nav-link href="{{ route('buses') }}" :active="request()->routeIs('buses')">
+                {{ __('Buses') }}
             </x-jet-responsive-nav-link>
         </div>
 

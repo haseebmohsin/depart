@@ -16,11 +16,13 @@ class Traveler extends Model
      */
     protected $fillable = [
         'name',
-        'photo',
         'system_id',
         'department',
-        'gender',
         'challan',
-        'status',
+        'gender',
+        'shift',
+        'route_no',
+        'stop_name',
+        'photo',
     ];
 }

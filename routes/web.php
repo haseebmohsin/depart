@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\Buses;
 use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\DriverConductorForm;
 use App\Http\Livewire\DriversConductors;
@@ -25,6 +26,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', Dashboard::cl
 
 Route::get('/travelers', Travelers::class)->name('travelers');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/driversConductors', DriversConductors::class )->name('driversConductors');
+Route::middleware(['auth:sanctum', 'verified'])->get('/driversConductors', DriversConductors::class)->name('driversConductors');
 Route::middleware(['auth:sanctum', 'verified'])->get('/driverConductorForm', DriverConductorForm::class)->name('driverConductorForm');
-
+Route::middleware(['auth:sanctum', 'verified'])->get('/buses', Buses::class)->name('buses');
