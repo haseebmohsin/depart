@@ -179,7 +179,7 @@
                                     <th class="px-4 py-3">Actions</th>
                                 </tr>
                             </thead>
-                            @if ( $travelers->count() )
+                            @if ( $travelers )
                             <tbody class="bg-white divide-y">
                                 @foreach( $travelers as $traveler )
                                 <tr class="text-gray-700">
@@ -206,25 +206,30 @@
                                     <td class="px-4 py-3 text-sm">
                                         {{ $traveler->created_at->format('d/m/Y') }}
                                     </td>
-                                    <td class="px-4 py-3 text-sm">
-                                        <a wire:click="print({{ $traveler->id }})"
-                                            class="px-3 py-2 mr-2 cursor-pointer font-semibold text-white bg-blue-500 rounded-md">
-                                            Print
-                                        </a>
-                                        @if ($traveler->is_printed == 0)
-                                        <a wire:click="updatePrintStatus({{ $traveler->id }})"
-                                            class="px-3 py-2 mr-2 cursor-pointer font-semibold text-white bg-blue-500 rounded-md">
-                                            Printed
-                                        </a>
-                                        @else
-                                        <a
-                                            class="px-9 py-2 mr-2 cursor-pointer font-semibold text-white bg-white rounded-md">
-                                        </a>
-                                        @endif
-                                        <a wire:click="delete({{ $traveler->id }})"
-                                            class="px-3 py-2 cursor-pointer font-semibold text-white bg-red-500 rounded-md">
+                                    <td class="flex px-4 py-3 text-sm">
+                                        <div onclick="setTimeout(function() { openModal(true); }, 1500);"
+                                            wire:click="printCardFront({{ $traveler->id }})"
+                                            class="px-1 py-2 mr-1 cursor-pointer font-normal text-sm text-white bg-blue-500 rounded-sm">
+                                            Print Front
+                                        </div>
+                                        <div onclick="setTimeout(function() { openModal(true); }, 1500);"
+                                            wire:click="printCardBack({{ $traveler->id }})"
+                                            class="px-1 py-2 mr-1 cursor-pointer font-normal text-sm text-white bg-blue-500 rounded-sm">
+                                            Print Back
+                                        </div>
+                                        <div wire:click="delete({{ $traveler->id }})"
+                                            class="px-1 py-2 mr-1 cursor-pointer font-normal text-sm text-white bg-red-500 rounded-sm">
                                             Delete
-                                        </a>
+                                        </div>
+                                        @if ($traveler->is_printed == 0)
+                                        <div wire:click="updatePrintStatus({{ $traveler->id }})"
+                                            class="px-1 py-2 cursor-pointer font-normal text-sm text-white bg-blue-500 rounded-sm">
+                                            Printed
+                                        </div>
+                                        @else
+                                        <div class="px-9 py-2 font-semibold text-white bg-white rounded-sm">
+                                        </div>
+                                        @endif
                                     </td>
                                 </tr>
                                 @endforeach
@@ -249,5 +254,166 @@
                 </div>
             </div>
         </main>
+
+        <!-- overlay -->
+        <div id="modal_overlay"
+            class="hidden absolute inset-0 bg-black bg-opacity-30 h-screen w-full flex justify-center items-start md:items-center pt-10 md:pt-0"
+            style="z-index: 999 !important;">
+            <!-- modal -->
+            <div id="modal"
+                class="pacity-0 transform -translate-y-full scale-150  relative w-10/12 md:w-1/2 h-1/2 md:h-3/4 bg-white rounded shadow-lg transition-transform duration-300">
+                <!-- button close -->
+                <button onclick="openModal(false)"
+                    class="absolute -top-3 -right-3 bg-red-500 hover:bg-red-600 text-2xl w-10 h-10 rounded-full focus:outline-none text-white">
+                    &cross;
+                </button>
+                <!-- header -->
+                <div class="px-4 py-3 border-b border-gray-200">
+                    <h2 class="text-xl font-semibold text-gray-600"> Print Bus Pass </h2>
+                </div>
+                <!-- body -->
+                <div class="flex w-full py-4 px-6">
+                    <!-- card Front -->
+                    @if ( $cardFront )
+                    <div class="bg-red-300 p-4 mr-1" id="card">
+                        <div class="flex w-full">
+                            <div class="w-1/4">
+                                <img src="https://fakeimg.pl/50/" alt="logo">
+                            </div>
+                            <div class="">
+                                <div class="flex">
+                                    <h6 class="mr-10">
+                                        <span class="font-bold"> Session: </span> {{ $session }}
+                                    </h6>
+                                    <h6>
+                                        <span class="font-bold"> S.No. </span> {{ $serial }}
+                                    </h6>
+                                </div>
+                                <h6>
+                                    NATIONAL UNIVERSITY OF MODERN LANGUAGES
+                                </h6>
+                                <div class="flex justify-center mr-20">
+                                    <h6 class="mb-1 ml-20">
+                                        H-9, ISLAMABAD
+                                    </h6>
+                                </div>
+                                <div class="flex justify-center mb-1">
+                                    <h6 class="bg-green-800 px-3">
+                                        BUS PASS
+                                    </h6>
+                                </div>
+                                <div class="flex justify-center">
+                                    <h6 class="font-small text-xs ml-30">
+                                        (NOT TRANSFERABLE)
+                                    </h6>
+                                </div>
+                            </div>
+                        </div> <!-- Row 1 end -->
+                        <div class="flex">
+                            <div>
+                                <h6 class="mb-1" id="name">
+                                    <span class="font-bold"> Name: </span> {{ $name }}
+                                </h6>
+                                <div class="flex">
+                                    <h6 class="mr-20">
+                                        <span class="font-bold"> System ID: </span> {{ $system_id }}
+                                    </h6>
+                                    <h6>
+                                        <span class="font-bold"> Deptt: </span> {{ $department }}
+                                    </h6>
+                                </div>
+                                <p class="text-sm mb-3 mt-1 w-10/12">
+                                    is hereby authorized to travel by university Bus / Wagon from Rawalpindi / Islamabad
+                                    to the university and back.
+                                </p>
+                                <h6 class="ml-5">
+                                    <span class="font-bold"> Expiry: </span> {{ $expiry }}
+                                </h6>
+                            </div>
+                            <div class="">
+                                <img src="https://fakeimg.pl/200/" alt="Photo">
+                            </div>
+                        </div> <!-- Row 2 end -->
+                    </div>
+                    @endif
+                    <!-- card Back -->
+                    @if( $cardBack )
+                    <div class="bg-red-300 p-4" id="card">
+                        <div class="flex w-full">
+                            <div class="w-1/3 mt-12 mr-4">
+                                <img src="https://fakeimg.pl/150/" alt="logo">
+                            </div>
+                            <div class="mt-4">
+                                <p class="mb-1">
+                                    1. Students are not allowed to travel in university busses without bus pass.
+                                </p>
+                                <p class="mb-1">
+                                    2. in case of loss, the matter be reported to TPT section immediately for getting
+                                    new bus pass. failing which the traveling facility will be withdrawn.
+                                </p>
+                                <p class="mb-1">
+                                    3. Finder may please return this pass at the given address.
+                                </p>
+                                <p>
+                                    4. No refund allowed on this pass
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
+                </div>
+                <!-- footer -->
+                <div
+                    class="absolute bottom-0 left-0 px-4 py-3 border-t border-gray-200 w-full flex justify-end items-center gap-3">
+                    <button onclick="openModal(false)"
+                        class="bg-gray-500 hover:bg-gray-600 px-4 py-2 rounded text-white focus:outline-none">
+                        Cancel
+                    </button>
+                    <button id="print"
+                        class="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded text-white focus:outline-none">
+                        Print
+                    </button>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
+
+<script>
+const modal_overlay = document.querySelector('#modal_overlay');
+const modal = document.querySelector('#modal');
+
+function openModal(value) {
+    const modalCl = modal.classList
+    const overlayCl = modal_overlay
+
+    if (value) {
+        overlayCl.classList.remove('hidden')
+        setTimeout(() => {
+            modalCl.remove('opacity-0')
+            modalCl.remove('-translate-y-full')
+            modalCl.remove('scale-150')
+        }, 100);
+    } else {
+        modalCl.add('-translate-y-full')
+        setTimeout(() => {
+            modalCl.add('opacity-0')
+            modalCl.add('scale-150')
+        }, 100);
+        setTimeout(() => overlayCl.classList.add('hidden'), 300);
+    }
+}
+
+//print the record
+document.getElementById('print').addEventListener('click', () => {
+    window.print();
+    // document.getElementById("card_front").setAttribute("id", "card");
+    // document.getElementById("card").setAttribute("id", "card_front");
+});
+// document.getElementById('print_back').addEventListener('click', () => {
+//     document.getElementById("card_back").setAttribute("id", "card");
+//     window.print();
+//     document.getElementById("card").setAttribute("id", "card_back");
+// });
+</script>

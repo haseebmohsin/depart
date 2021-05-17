@@ -59,8 +59,9 @@ span.arrow:hover .arrow_icon svg {
 
 .bg-blue-teal-gradient {
     background: rgb(49, 130, 206);
-    background: linear-gradient(90deg, rgba(49, 130, 206, 1) 0%, rgba(56, 178, 172, 1) 100%);
+    background: linear-gradient( 90deg, rgba(49, 130, 206, 1) 0%, rgba(56, 178, 172, 1) 100%);
 }
+
 
 /* .cover {
     border-bottom-right-radius: 128px;
@@ -72,3 +73,18 @@ span.arrow:hover .arrow_icon svg {
         border-bottom-right-radius: 256px;
     }
 } */
+
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    #card,
+    #card * {
+        visibility: visible;
+    }
+    #card {
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+}

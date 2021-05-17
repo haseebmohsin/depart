@@ -19,6 +19,15 @@ class Dashboard extends Component
         'allFemales' => 'allFemales',
     ];
 
+    public $cardFront = false;
+    public $cardBack = false;
+    public $session = 'fall';
+    public $serial = '363';
+    public $name;
+    public $system_id;
+    public $department;
+    public $expiry = '12/04/2021';
+
     public $travelersSidebar = true;
     public $driversSidebar = false;
 
@@ -94,7 +103,7 @@ class Dashboard extends Component
     public function delete($id)
     {
         Traveler::find($id)->delete();
-        session()->flash('deleteSuccess', "Traveler's data deleted successfully");
+        session()->flash('deleteSuccess', "Deleted successfully");
     }
 
     public function updatePrintStatus($id)
@@ -103,12 +112,24 @@ class Dashboard extends Component
         if ($traveler) {
             $traveler->is_printed = 1;
             $traveler->save();
-            session()->flash('printedStatus', "Traveler's data removed from new Requests queue");
+            session()->flash('printedStatus', "Removed from new Requests queue");
         }
     }
 
-    public function print($id)
+    public function printCardFront($id)
     {
-        dd($id);
+        $this->cardBack = false;
+
+        $traveler = Traveler::find($id);
+        $this->name = $traveler->name;
+        $this->system_id = $traveler->system_id;
+        $this->department = $traveler->department;
+        $this->cardFront = true;
+    }
+
+    public function printCardBack($id)
+    {
+        $this->cardFront = false;
+        $this->cardBack = true;
     }
 }

@@ -1,22 +1,21 @@
 <div class="mb-10">
     <div class="flex justify-between mb-2">
-        @if( !Auth::check() )
-        <div class="text-2xl font-bold mb-3 text-gray-700">
-            Route No: {{$routeNo}}
-        </div>
-        @endif
-        @if( Auth::check() )
+        @auth
         <div class="text-2xl font-bold mb-3">
             Route No: {{$routeNo}}
         </div>
-        @endif
-        @if( Auth::check() )
+        @else
+        <div class="text-2xl font-bold mb-3 text-gray-700">
+            Route No: {{$routeNo}}
+        </div>
+        @endauth
+        @auth
         <div>
             <a href="" class="float-right border-2 text-white bg-blue-500 rounded-md py-2 px-4 hover:pointer mr-2">
                 Add new stop
             </a>
         </div>
-        @endif
+        @endauth
     </div>
     <div class="w-full overflow-x-auto">
         <table class="table-auto w-full whitespace-nowrap">
@@ -27,9 +26,9 @@
                     <th class="px-4 py-3">Evening Stop</th>
                     <th class="px-4 py-3 break-normal">Morning Time</th>
                     <th class="px-4 py-3 break-normal">Morning Stop</th>
-                    @if( Auth::check() )
+                    @auth
                     <th class="px-4 py-3">Actions</th>
-                    @endif
+                    @endauth
                 </tr>
             </thead>
             @if ( $routes->count())
@@ -72,14 +71,14 @@
                     <td class="px-4 py-3 text-sm">
                         {{ $route->m_stop }}
                     </td>
-                    @if( Auth::check() )
+                    @auth
                     <td class="px-4 py-3 text-sm">
                         <a wire:click="editRoute({{ $route->id }})"
                             class="px-3 py-2 mr-2 cursor-pointer font-semibold text-white bg-blue-500 rounded-md">
                             Edit
                         </a>
                     </td>
-                    @endif
+                    @endauth
                     @endif
                 </tr>
                 @endforeach
