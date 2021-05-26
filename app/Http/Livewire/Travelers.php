@@ -8,24 +8,35 @@ use App\Models\RouteTwo;
 use App\Models\Traveler;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use PDF;
 
 class Travelers extends Component
 {
     use WithFileUploads;
 
-    public $name = '';
-    public $photo;
-    public $system_id = '';
-    public $department = '';
-    public $challan = '';
-    public $gender = 'Male';
+    public $step;
+    public $stopNames;
+
     public $shift = 'Morning';
     public $routeNo;
-    public $stopNames;
     public $selectedStop;
+    public $challan;
+
+    public $name = '';
+    public $system_id = '';
+    public $department = '';
+    public $gender = 'Male';
+    public $photo;
+
+    private $stepActions = [
+        'submit1',
+        'submit2',
+    ];
 
     public function mount()
     {
+        $this->step = 0;
+
         $this->reset('stopNames');
 
         if ($this->routeNo === '1' && $this->shift === 'morning') {
@@ -61,30 +72,56 @@ class Travelers extends Component
         'name' => 'required|string|max:125',
         'system_id' => 'required|unique:Travelers|string|max:255',
         'department' => 'required|string|max:255',
-        'challan' => 'required|numeric',
-        'shift' => 'required',
-        'routeNo' => 'required',
-        'selectedStop' => 'required',
         'photo' => 'required|image|max:2048',
     ];
 
-    public function formSubmit()
+    public function decreaseStep()
+    {
+        $this->step--;
+    }
+
+    public function submit()
+    {
+        $action = $this->stepActions[$this->step];
+        $this->$action();
+    }
+
+
+    public function submit1()
+    {
+        $this->validate([
+            'challan' => 'required|image|max:2048',
+            'routeNo' => 'required',
+            'selectedStop' => 'required',
+        ]);
+
+        $this->step++;
+    }
+
+    public function submit2()
     {
         $this->validate();
+        $challan_path = $this->challan->store('Challan', 'public');
         $photo_path = $this->photo->store('photos', 'public');
 
         Traveler::create([
-            'name' => $this->name,
-            'system_id' => $this->system_id,
-            'department' => $this->department,
-            'challan' => $this->challan,
-            'gender' => $this->gender,
             'shift' => $this->shift,
             'route_no' => $this->routeNo,
             'stop_name' => $this->selectedStop,
+            'challan' => $challan_path,
+            'name' => $this->name,
+            'system_id' => $this->system_id,
+            'department' => $this->department,
+            'gender' => $this->gender,
             'photo' => $photo_path,
         ]);
         return redirect()->route('landing');
+    }
+
+    public function downloadChallan()
+    {
+        $pdf = PDF::loadView('components.challan-form');
+        return $pdf->stream('Bus-Fee-Challan.pdf');
     }
 
     public function render()

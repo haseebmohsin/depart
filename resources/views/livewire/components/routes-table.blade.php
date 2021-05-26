@@ -1,11 +1,11 @@
 <div class="mb-10">
-    <div class="flex justify-between mb-2">
+    <div class="flex justify-between mb-1">
         @auth
-        <div class="text-2xl font-bold mb-3">
+        <div class="text-2xl font-bold">
             Route No: {{$routeNo}}
         </div>
         @else
-        <div class="text-2xl font-bold mb-3 text-gray-700">
+        <div class="text-2xl font-bold text-gray-700">
             Route No: {{$routeNo}}
         </div>
         @endauth
@@ -21,7 +21,7 @@
         <table class="table-auto w-full whitespace-nowrap">
             <thead>
                 <tr
-                    class="text-xs font-semibold tracking-wide text-left text-gray-700 uppercase border-t border-b dark:border-gray-700 bg-gray-200">
+                    class="text-xs font-semibold tracking-wide text-left text-gray-700 uppercase border-t border-b dark:border-gray-700 bg-gray-400">
                     <th class="px-4 py-3">Evening Time</th>
                     <th class="px-4 py-3">Evening Stop</th>
                     <th class="px-4 py-3 break-normal">Morning Time</th>

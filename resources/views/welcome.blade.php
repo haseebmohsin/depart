@@ -108,9 +108,9 @@
         </div>
 
         <section class="bg-white border-b pt-20 pb-72 px-6 md:px-10 xl:px-32">
-            <h2 class="text-4xl text-gray-900 ml-4 mb-3">Routes Information</h2>
+            <h2 class="text-4xl text-gray-900 mb-1">Routes Information</h2>
             <!-- CTA -->
-            <div class="flex p-2 mb-10 bg-gray-300 rounded-lg shadow-md"></div>
+            <div class="flex p-2 mb-10 bg-gray-300 rounded-sm shadow-md"></div>
 
             <livewire:components.routes-table :routeNo="1" />
             <livewire:components.routes-table :routeNo="2" />

@@ -25,6 +25,7 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', Dashboard::class)->name('dashboard');
 
 Route::get('/travelers', Travelers::class)->name('travelers');
+Route::get('/download/challan', [Travelers::class, 'downloadChallan'])->name('downloadChallan');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/driversConductors', DriversConductors::class)->name('driversConductors');
 Route::middleware(['auth:sanctum', 'verified'])->get('/driverConductorForm', DriverConductorForm::class)->name('driverConductorForm');

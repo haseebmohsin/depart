@@ -24,6 +24,7 @@ class Dashboard extends Component
     public $session = 'fall';
     public $serial = '363';
     public $name;
+    public $photo;
     public $system_id;
     public $department;
     public $expiry = '12/04/2021';
@@ -45,17 +46,17 @@ class Dashboard extends Component
 
         if ($this->searchQuery && $this->search) {
             $searchQuery = '%' . $this->searchQuery . '%';
-            $travelers = Traveler::where('name', 'like', $searchQuery)->paginate(30);
+            $travelers = Traveler::where('name', 'like', $searchQuery)->latest()->paginate(30);
         } elseif ($this->newRequests) {
-            $travelers = Traveler::where('is_printed', 0)->paginate(30);
+            $travelers = Traveler::where('is_printed', 0)->latest()->paginate(30);
         } elseif ($this->allRecords) {
-            $travelers = Traveler::paginate(30);
+            $travelers = Traveler::latest()->paginate(30);
         } elseif ($this->allMales) {
-            $travelers = Traveler::where('gender', 'male')->paginate(30);
+            $travelers = Traveler::where('gender', 'male')->latest()->paginate(30);
         } elseif ($this->allFemales) {
-            $travelers = Traveler::where('gender', 'female')->paginate(30);
+            $travelers = Traveler::where('gender', 'female')->latest()->paginate(30);
         } else {
-            $travelers = Traveler::where('is_printed', 0)->paginate(30);
+            $travelers = Traveler::where('is_printed', 0)->latest()->paginate(30);
         }
 
         return view('livewire.dashboard', [
@@ -122,6 +123,7 @@ class Dashboard extends Component
 
         $traveler = Traveler::find($id);
         $this->name = $traveler->name;
+        $this->photo = $traveler->photo;
         $this->system_id = $traveler->system_id;
         $this->department = $traveler->department;
         $this->cardFront = true;

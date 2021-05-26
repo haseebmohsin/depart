@@ -10,7 +10,7 @@
         <main class="h-full lg:ml-64">
             <div class="px-10 pt-6 pb-16 mx-auto grid">
                 <div class="flex justify-between">
-                    <h2 class="mt-2 mb-4 ml-1 text-2xl font-semibold text-gray-700">
+                    <h2 class="mt-2 mb-2 text-2xl font-semibold text-gray-700">
                         @if($newRequests && ! $searchQuery)
                         New Requests
                         @endif
@@ -61,7 +61,7 @@
                     @endif
                 </div>
                 <!-- CTA -->
-                <div class="flex p-2 mb-6 bg-gray-300 rounded-lg shadow-md"></div>
+                <div class="flex p-2 mb-6 bg-gray-300 rounded-sm shadow-md"></div>
                 <!-- Cards -->
                 <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
                     <!-- Card -->
@@ -174,7 +174,7 @@
                                     <th class="px-4 py-3">System ID</th>
                                     <th class="px-4 py-3">Department</th>
                                     <th class="px-4 py-3">Gender</th>
-                                    <th class="px-4 py-3">Challan No</th>
+                                    <th class="px-4 py-3">Challan</th>
                                     <th class="px-4 py-3">Date</th>
                                     <th class="px-4 py-3">Actions</th>
                                 </tr>
@@ -200,8 +200,10 @@
                                     <td class="px-4 py-3 text-sm">
                                         {{ $traveler->gender }}
                                     </td>
-                                    <td class="px-4 py-3 text-sm">
-                                        {{ $traveler->challan }}
+                                    <td class="px-4 py-3">
+                                        <img class="object-cover w-full h-full rounded-full"
+                                            src="{{ asset('storage/'.$traveler->challan )}}" alt="Challan"
+                                            style="width: 40px; height: 40px" />
                                     </td>
                                     <td class="px-4 py-3 text-sm">
                                         {{ $traveler->created_at->format('d/m/Y') }}
@@ -227,7 +229,7 @@
                                             Printed
                                         </div>
                                         @else
-                                        <div class="px-9 py-2 font-semibold text-white bg-white rounded-sm">
+                                        <div class="px-1 py-2">
                                         </div>
                                         @endif
                                     </td>
@@ -331,7 +333,7 @@
                                 </h6>
                             </div>
                             <div class="">
-                                <img src="https://fakeimg.pl/200/" alt="Photo">
+                                <img src="{{ $photo }}" alt="Photo">
                             </div>
                         </div> <!-- Row 2 end -->
                     </div>
@@ -341,7 +343,7 @@
                     <div class="bg-red-300 p-4" id="card">
                         <div class="flex w-full">
                             <div class="w-1/3 mt-12 mr-4">
-                                <img src="https://fakeimg.pl/150/" alt="logo">
+                                <img src="https://fakeimg.pl/150/" alt="QR">
                             </div>
                             <div class="mt-4">
                                 <p class="mb-1">
