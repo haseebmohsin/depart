@@ -15,10 +15,10 @@ class CreateRouteThreesTable extends Migration
     {
         Schema::create('route_threes', function (Blueprint $table) {
             $table->id();
-            $table->string('m_stop')->nullable();
-            $table->string('m_time')->nullable();
-            $table->string('e_stop')->nullable();
-            $table->string('e_time')->nullable();
+            $table->string('morning_stop')->nullable();
+            $table->string('morning_time')->nullable();
+            $table->string('evening_stop')->nullable();
+            $table->string('evening_time')->nullable();
             $table->timestamps();
         });
     }

@@ -3,7 +3,7 @@
     <div class="h-full md:px-10 xl:px-32">
         <div class="px-10 pt-2 pb-16">
             <div class="flex justify-between mt-4">
-                <h2 class="mt-2 mb-4 ml-1 text-2xl font-semibold text-gray-700">
+                <h2 class="mt-2 mb-2 text-2xl font-semibold text-gray-700">
                     Routes Management
                 </h2>
                 @if (session()->has('success'))
@@ -24,7 +24,7 @@
                 @endif
             </div>
             <!-- CTA -->
-            <div class="flex p-2 mb-6 bg-gray-300 rounded-lg shadow-md"></div>
+            <div class="flex p-2 mb-6 bg-gray-300 rounded-sm shadow-md"></div>
             <div class="flex justify-between pt-2 pb-2">
                 <div class="w-1/2 relative text-gray-600">
                     <input wire:model="searchQuery"
@@ -47,31 +47,29 @@
                 <livewire:components.routes-table :routeNo="1" />
                 <livewire:components.routes-table :routeNo="2" />
                 <livewire:components.routes-table :routeNo="3" />
-                <livewire:components.routes-table :routeNo="3" />
-                <livewire:components.routes-table :routeNo="3" />
-                <livewire:components.routes-table :routeNo="3" />
-                <livewire:components.routes-table :routeNo="3" />
-                <livewire:components.routes-table :routeNo="3" />
-                <livewire:components.routes-table :routeNo="3" />
-                <livewire:components.routes-table :routeNo="3" />
-                <livewire:components.routes-table :routeNo="3" />
-                <livewire:components.routes-table :routeNo="3" />
-                <livewire:components.routes-table :routeNo="3" />
-                <livewire:components.routes-table :routeNo="3" />
-                <livewire:components.routes-table :routeNo="3" />
-                <livewire:components.routes-table :routeNo="3" />
-                <livewire:components.routes-table :routeNo="3" />
-                <livewire:components.routes-table :routeNo="3" />
-                <livewire:components.routes-table :routeNo="3" />
-                <livewire:components.routes-table :routeNo="3" />
-                <livewire:components.routes-table :routeNo="3" />
-                <livewire:components.routes-table :routeNo="3" />
-                <livewire:components.routes-table :routeNo="3" />
-                <livewire:components.routes-table :routeNo="3" />
-                <livewire:components.routes-table :routeNo="3" />
-                <livewire:components.routes-table :routeNo="3" />
-                <livewire:components.routes-table :routeNo="3" />
-                <livewire:components.routes-table :routeNo="3" />
+                <livewire:components.routes-table :routeNo="4" />
+                <livewire:components.routes-table :routeNo="5" />
+                <livewire:components.routes-table :routeNo="6" />
+                <livewire:components.routes-table :routeNo="7" />
+                <livewire:components.routes-table :routeNo="8" />
+                <livewire:components.routes-table :routeNo="9" />
+                <livewire:components.routes-table :routeNo="10" />
+                <livewire:components.routes-table :routeNo="11" />
+                <livewire:components.routes-table :routeNo="12" />
+                <livewire:components.routes-table :routeNo="13" />
+                <livewire:components.routes-table :routeNo="14" />
+                <livewire:components.routes-table :routeNo="15" />
+                <livewire:components.routes-table :routeNo="16" />
+                <livewire:components.routes-table :routeNo="17" />
+                <livewire:components.routes-table :routeNo="18" />
+                <livewire:components.routes-table :routeNo="19" />
+                <livewire:components.routes-table :routeNo="20" />
+                <livewire:components.routes-table :routeNo="21" />
+                <livewire:components.routes-table :routeNo="22" />
+                <livewire:components.routes-table :routeNo="23" />
+                <livewire:components.routes-table :routeNo="24" />
+                <livewire:components.routes-table :routeNo="25" />
+                <livewire:components.routes-table :routeNo="26" />
 
             </div>
         </div>

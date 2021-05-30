@@ -1,6 +1,6 @@
 <div class="leading-normal tracking-normal text-white gradient bg-gray-200"
     style="font-family: 'Source Sans Pro', sans-serif;">
-    <nav id="header" class="fixed w-full z-30 top-0 text-white pt-3 pb-3">
+    <nav id="header" class="fixed w-full z-30 top-0 text-white">
         <div class="w-full lg:container mx-auto flex flex-wrap items-center justify-between mt-0 py-2">
             <div class="pl-4 flex items-center">
                 <a class="toggleColour text-white hover:text-gray-100 no-underline hover:no-underline font-bold text-2xl lg:text-4xl"
@@ -85,6 +85,29 @@
         <livewire:components.routes-table :routeNo="1" />
         <livewire:components.routes-table :routeNo="2" />
         <livewire:components.routes-table :routeNo="3" />
+        <livewire:components.routes-table :routeNo="4" />
+        <livewire:components.routes-table :routeNo="5" />
+        <livewire:components.routes-table :routeNo="6" />
+        <livewire:components.routes-table :routeNo="7" />
+        <livewire:components.routes-table :routeNo="8" />
+        <livewire:components.routes-table :routeNo="9" />
+        <livewire:components.routes-table :routeNo="10" />
+        <livewire:components.routes-table :routeNo="11" />
+        <livewire:components.routes-table :routeNo="12" />
+        <livewire:components.routes-table :routeNo="13" />
+        <livewire:components.routes-table :routeNo="14" />
+        <livewire:components.routes-table :routeNo="15" />
+        <livewire:components.routes-table :routeNo="16" />
+        <livewire:components.routes-table :routeNo="17" />
+        <livewire:components.routes-table :routeNo="18" />
+        <livewire:components.routes-table :routeNo="19" />
+        <livewire:components.routes-table :routeNo="20" />
+        <livewire:components.routes-table :routeNo="21" />
+        <livewire:components.routes-table :routeNo="22" />
+        <livewire:components.routes-table :routeNo="23" />
+        <livewire:components.routes-table :routeNo="24" />
+        <livewire:components.routes-table :routeNo="25" />
+        <livewire:components.routes-table :routeNo="26" />
     </section>
 
     <svg class="wave-top" viewBox="0 0 1439 147" version="1.1" xmlns="http://www.w3.org/2000/svg"

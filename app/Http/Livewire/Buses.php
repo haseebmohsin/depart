@@ -7,7 +7,9 @@ use Livewire\WithPagination;
 
 class Buses extends Component
 {
-    protected $listeners = ['success'];
+    protected $listeners = [
+        'success',
+    ];
 
     public function success()
     {

@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class RouteTwo extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'morning_stop',
+        'morning_time',
+        'evening_stop',
+        'evening_time',
+    ];
 }
