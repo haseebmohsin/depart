@@ -15,10 +15,11 @@ class DriverConductor extends Model
      * @var array
      */
     protected $fillable = [
-        'name',
-        'CNIC',
+        'user_name',
+        'cnic',
         'contact',
         'address',
         'occupation',
+        'password',
     ];
 }

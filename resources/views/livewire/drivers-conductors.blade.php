@@ -1,7 +1,7 @@
 <div class="flex h-screen bg-gray-50" :class="{ 'overflow-hidden': sidebar }">
     <!-- Desktop sidebar -->
     <livewire:sidebar :travelersSidebar="$travelersSidebar" :driversSidebar="$driversSidebar"
-        :driversCount="$driversCount" :conductorsCount="$conductorsCount" />
+        :driversCount="$driversCount" :conductorsCount="$conductorsCount" key="{{ now() }}" />
     <!-- Mobile sidebar -->
     <div class="flex flex-col flex-1 w-full" x-data="{ sidebar: false }">
         <x-mob-sidebar />
@@ -20,17 +20,16 @@
                     @endif
                 </h2>
                 <!-- CTA -->
-                <div class="flex p-2 mb-6 bg-gray-300 rounded-lg shadow-md"></div>
+                <div class="flex p-2 mb-2 bg-gray-300 rounded-sm shadow-md"></div>
                 <!-- Cards -->
-                <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
+                <div class="grid gap-2 mb-4 md:grid-cols-2 xl:grid-cols-4">
                     <!-- Card -->
                     <div wire:click="drivers"
-                        class="flex items-center p-4 bg-white rounded-lg shadow-xs cursor-pointer">
-                        <div class="p-3 mr-4 text-red-500 bg-red-100 rounded-full">
+                        class="flex items-center p-2 pl-4 bg-white rounded-lg shadow-xs cursor-pointer">
+                        <div class="p-3 mr-4 text-blue-500 bg-blue-100 rounded-full">
                             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z"
+                                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
                                     clip-rule="evenodd"></path>
                             </svg>
                         </div>
@@ -45,13 +44,12 @@
                     </div>
                     <!-- Card -->
                     <div wire:click="conductors"
-                        class="flex items-center p-4 bg-white rounded-lg shadow-xs cursor-pointer">
+                        class="flex items-center p-2 pl-4 bg-white rounded-lg shadow-xs cursor-pointer">
                         <div class="p-3 mr-4 text-blue-500 bg-blue-100 rounded-full">
                             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z">
-                                </path>
+                                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                                    clip-rule="evenodd"></path>
                             </svg>
                         </div>
                         <div>
@@ -95,7 +93,7 @@
                             <thead>
                                 <tr
                                     class="text-xs font-semibold tracking-wide text-left text-gray-700 uppercase border-t border-b dark:border-gray-700 bg-gray-50">
-                                    <th class="px-4 py-3 break-normal">Name</th>
+                                    <th class="px-4 py-3 break-normal"> Username </th>
                                     <th class="px-4 py-3">CNIC</th>
                                     <th class="px-4 py-3">Contact</th>
                                     <th class="px-4 py-3">Address</th>
@@ -107,7 +105,7 @@
                                 @foreach( $staffs as $staff )
                                 <tr class="text-gray-700">
                                     <td class="px-4 py-3 text-sm">
-                                        {{ $staff->name }}
+                                        {{ $staff->user_name }}
                                     </td>
                                     <td class="px-4 py-3 text-sm">
                                         {{ $staff->CNIC }}
@@ -119,7 +117,7 @@
                                         {{ $staff->address }}
                                     </td>
                                     <td class="px-4 py-3 text-sm">
-                                        <a wire:click="delete({{ $staff->id }})"
+                                        <a wire:click="deleteStaff({{ $staff->id }})"
                                             class="px-3 py-2 cursor-pointer font-semibold text-white bg-red-500 rounded-md">
                                             Delete
                                         </a>
@@ -132,8 +130,9 @@
                             <tbody>
                                 <tr>
                                     <td class="px-4 py-3">
-                                        <h3 class="text-lg text-gray-700 font-normal w-full"> No Drivers and Conductors
-                                            Found </h3>
+                                        <h3 class="text-lg text-gray-700 font-normal w-full">
+                                            No Drivers and Conductors Found
+                                        </h3>
                                     </td>
                                 </tr>
                             </tbody>

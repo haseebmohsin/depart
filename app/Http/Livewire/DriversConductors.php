@@ -59,4 +59,12 @@ class DriversConductors extends Component
         $this->drivers = false;
         $this->search = false;
     }
+
+    public function deleteStaff($id)
+    {
+        $staff = DriverConductor::where('id', $id)->first();
+        if ($staff) {
+            $staff->delete();
+        }
+    }
 }

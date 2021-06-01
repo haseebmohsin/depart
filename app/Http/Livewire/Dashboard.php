@@ -142,7 +142,8 @@ class Dashboard extends Component
         $traveler = Traveler::where('id', $id)->first();
         $dataArray = "
             Name: $traveler->name
-            
+            System Id: $traveler->system_id
+            Department: $traveler->department
             Secrete: $traveler->secret
         ";
 
