@@ -2,13 +2,13 @@
     <!-- Desktop sidebar -->
     <livewire:sidebar :travelersSidebar="$travelersSidebar" :driversSidebar="$driversSidebar"
         :newRequestsCount="$newRequestsCount" :allRecordsCount="$allRecordsCount" :allMalesCount="$allMalesCount"
-        :allFemalesCount="$allFemalesCount" />
+        :allFemalesCount="$allFemalesCount" key="{{ now() }}" />
     <!-- Mobile sidebar -->
     <div class="flex flex-col flex-1 w-full" x-data="{ sidebar: false }">
         <x-mob-sidebar />
         <!-- Main content right side -->
         <main class="h-full lg:ml-64">
-            <div class="px-10 pt-6 pb-16 mx-auto grid">
+            <div class="px-10 pt-4 pb-16 mx-auto grid">
                 <div class="flex justify-between">
                     <h2 class="mt-2 mb-2 text-2xl font-semibold text-gray-700">
                         @if($newRequests && ! $searchQuery)
@@ -61,12 +61,12 @@
                     @endif
                 </div>
                 <!-- CTA -->
-                <div class="flex p-2 mb-6 bg-gray-300 rounded-sm shadow-md"></div>
+                <div class="flex p-2 mb-2 bg-gray-300 rounded-sm shadow-md"></div>
                 <!-- Cards -->
-                <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
+                <div class="grid gap-2 mb-3 md:grid-cols-2 xl:grid-cols-4">
                     <!-- Card -->
                     <div wire:click="newRequests"
-                        class="flex items-center p-4 bg-white rounded-lg shadow-xs cursor-pointer">
+                        class="flex items-center p-2 pl-4 bg-white rounded-lg shadow-xs cursor-pointer">
                         <div class="p-3 mr-4 text-red-500 bg-red-100 rounded-full">
                             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -86,7 +86,7 @@
                     </div>
                     <!-- Card -->
                     <div wire:click="allRecords"
-                        class="flex items-center p-4 bg-white rounded-lg shadow-xs cursor-pointer">
+                        class="flex items-center p-2 pl-4 bg-white rounded-lg shadow-xs cursor-pointer">
                         <div class="p-3 mr-4 text-blue-500 bg-blue-100 rounded-full">
                             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -106,7 +106,7 @@
                     </div>
                     <!-- Card -->
                     <div wire:click="allMales"
-                        class="flex items-center p-4 bg-white rounded-lg shadow-xs cursor-pointer">
+                        class="flex items-center p-2 pl-4 bg-white rounded-lg shadow-xs cursor-pointer">
                         <div class="p-3 mr-4 text-blue-500 bg-blue-100 rounded-full">
                             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -125,7 +125,7 @@
                     </div>
                     <!-- Card -->
                     <div wire:click="allFemales"
-                        class="flex items-center p-4 bg-white rounded-lg shadow-xs cursor-pointer">
+                        class="flex items-center p-2 pl-4 bg-white rounded-lg shadow-xs cursor-pointer">
                         <div class="p-3 mr-4 text-blue-500 bg-blue-100 rounded-full">
                             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -145,7 +145,7 @@
                     </div>
                 </div>
 
-                <div class="pt-2 pb-6">
+                <div class="flex justify-between items-center pt-2 pb-3">
                     <div class="sm:w-1/2 relative text-gray-600">
                         <input wire:model="searchQuery"
                             class="w-full border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-md focus:outline-none"
@@ -160,6 +160,44 @@
                             </svg>
                         </button>
                     </div>
+                    <div>
+                        <a href="{{ route('sendMessage') }}"
+                            class="px-2 py-2 mr-1 cursor-pointer font-normal text-sm text-white bg-blue-500 rounded-md">
+                            Send Notification
+                        </a>
+                    </div>
+                </div>
+
+                <div x-data="{ imgModal : false, imgModalSrc : '' }">
+                    <template @img-modal.window="imgModal = true; imgModalSrc = $event.detail.imgModalSrc;"
+                        x-if="imgModal">
+                        <div x-transition:enter="transition ease-out duration-300"
+                            x-transition:enter-start="opacity-0 transform scale-90"
+                            x-transition:enter-end="opacity-100 transform scale-100"
+                            x-transition:leave="transition ease-in duration-300"
+                            x-transition:leave-start="opacity-100 transform scale-100"
+                            x-transition:leave-end="opacity-0 transform scale-90" x-on:click.away="imgModalSrc = ''"
+                            class="p-2 fixed w-full h-100 inset-0 z-50 overflow-hidden flex justify-center items-center bg-black bg-opacity-75">
+                            <div x-on:click.away="imgModal = ''"
+                                class="flex flex-col max-w-3xl max-h-full overflow-auto">
+                                <div class="z-50">
+                                    <button x-on:click="imgModal = ''"
+                                        class="float-right pt-2 pr-2 outline-none focus:outline-none">
+                                        <svg class="fill-current text-white" xmlns="http://www.w3.org/2000/svg"
+                                            width="18" height="18" viewBox="0 0 18 18">
+                                            <path
+                                                d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z">
+                                            </path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="p-2">
+                                    <img :alt="imgModalSrc" class="object-contain h-1/2-screen" :src="imgModalSrc"
+                                        style="height: 80vh;">
+                                </div>
+                            </div>
+                        </div>
+                    </template>
                 </div>
 
                 <!-- New Table -->
@@ -201,9 +239,12 @@
                                         {{ $traveler->gender }}
                                     </td>
                                     <td class="px-4 py-3">
-                                        <img class="object-cover w-full h-full rounded-full"
-                                            src="{{ asset('storage/'.$traveler->challan )}}" alt="Challan"
-                                            style="width: 40px; height: 40px" />
+                                        <div x-data="{}">
+                                            <img x-on:click="$dispatch('img-modal', {  imgModalSrc: '{{ asset('storage/'.$traveler->challan )}}' })"
+                                                class="object-cover w-full h-full rounded-full cursor-pointer"
+                                                src="{{ asset('storage/'.$traveler->challan )}}" alt="Challan"
+                                                style="width: 40px; height: 40px" />
+                                        </div>
                                     </td>
                                     <td class="px-4 py-3 text-sm">
                                         {{ $traveler->created_at->format('d/m/Y') }}
@@ -211,21 +252,21 @@
                                     <td class="flex px-4 py-3 text-sm">
                                         <div onclick="setTimeout(function() { openModal(true); }, 1500);"
                                             wire:click="printCardFront({{ $traveler->id }})"
-                                            class="px-1 py-2 mr-1 cursor-pointer font-normal text-sm text-white bg-blue-500 rounded-sm">
+                                            class="px-1 py-2 mr-1 cursor-pointer font-normal text-sm text-white bg-blue-500 rounded-md">
                                             Print Front
                                         </div>
                                         <div onclick="setTimeout(function() { openModal(true); }, 1500);"
                                             wire:click="printCardBack({{ $traveler->id }})"
-                                            class="px-1 py-2 mr-1 cursor-pointer font-normal text-sm text-white bg-blue-500 rounded-sm">
+                                            class="px-1 py-2 mr-1 cursor-pointer font-normal text-sm text-white bg-blue-500 rounded-md">
                                             Print Back
                                         </div>
                                         <div wire:click="delete({{ $traveler->id }})"
-                                            class="px-1 py-2 mr-1 cursor-pointer font-normal text-sm text-white bg-red-500 rounded-sm">
+                                            class="px-1 py-2 mr-1 cursor-pointer font-normal text-sm text-white bg-red-500 rounded-md">
                                             Delete
                                         </div>
                                         @if ($traveler->is_printed == 0)
                                         <div wire:click="updatePrintStatus({{ $traveler->id }})"
-                                            class="px-1 py-2 cursor-pointer font-normal text-sm text-white bg-blue-500 rounded-sm">
+                                            class="px-1 py-2 cursor-pointer font-normal text-sm text-white bg-blue-500 rounded-md">
                                             Printed
                                         </div>
                                         @else

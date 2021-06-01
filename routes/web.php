@@ -6,6 +6,7 @@ use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\DriverConductorForm;
 use App\Http\Livewire\DriversConductors;
 use App\Http\Livewire\Landing;
+use App\Http\Livewire\SendNotification;
 use App\Http\Livewire\Travelers;
 use Illuminate\Support\Facades\Route;
 
@@ -31,4 +32,5 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/driversConductors', DriversConductors::class)->name('driversConductors');
     Route::get('/driverConductorForm', DriverConductorForm::class)->name('driverConductorForm');
     Route::get('/buses', Buses::class)->name('buses');
+    Route::get('/sendMessage', SendNotification::class)->name('sendMessage');
 });
