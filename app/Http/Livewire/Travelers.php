@@ -31,6 +31,7 @@ use App\Models\RouteTwo;
 use App\Models\Traveler;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Str;
 use PDF;
 
 class Travelers extends Component
@@ -49,6 +50,7 @@ class Travelers extends Component
     public $system_id = '';
     public $department = '';
     public $gender = 'Male';
+    public $phone;
     public $photo;
 
     private $stepActions = [
@@ -233,6 +235,7 @@ class Travelers extends Component
         'name' => 'required|string|max:125',
         'system_id' => 'required|unique:Travelers|string|max:255',
         'department' => 'required|string|max:255',
+        'phone' => 'required',
         'photo' => 'required|image|max:2048',
     ];
 
@@ -274,7 +277,9 @@ class Travelers extends Component
             'system_id' => $this->system_id,
             'department' => $this->department,
             'gender' => $this->gender,
+            'phone' => $this->phone,
             'photo' => $photo_path,
+            'secret' => Str::random(16),
         ]);
         return redirect()->route('landing');
     }

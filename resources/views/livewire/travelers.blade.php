@@ -141,43 +141,42 @@
                     <h2 class="mb-2 text-center text-xl font-extrabold text-gray-700">
                         Please fill the following details carefully!
                     </h2>
-                    <div class="flex space-between my-3 space-x-4">
-                        <div class="flex flex-wrap w-2/5">
-                            <input wire:model="name" type="text"
-                                class="p-2 rounded border shadow-sm w-full focus:outline-none focus:ring focus:border-blue-300"
-                                placeholder="Full Name" />
-                            @error('name') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+                    <div class="grid grid-cols-6 gap-6">
+                        <div class="col-span-6 sm:col-span-3">
+                            <x-jet-label for="name" value="{{ __('Name') }}" />
+                            <x-jet-input wire:model.lazy="name" class="block w-full mt-1" type="text" />
+                            <x-jet-input-error class="block w-full mt-1" for="name" />
                         </div>
-                        <div class="flex flex-wrap w-2/5">
-                            <input wire:model="system_id" type="text"
-                                class="p-2 rounded border shadow-sm w-full focus:outline-none focus:ring focus:border-blue-300"
-                                placeholder="System ID" />
-                            @error('system_id') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+                        <div class="col-span-6 sm:col-span-3">
+                            <x-jet-label for="system_id" value="{{ __('System Id') }}" />
+                            <x-jet-input wire:model.lazy="system_id" class="block w-full mt-1" type="text" />
+                            <x-jet-input-error class="block w-full mt-1" for="system_id" />
                         </div>
-                        <div class="flex flex-wrap w-2/5">
-                            <input wire:model="department" type="text"
-                                class="p-2 rounded border shadow-sm w-full focus:outline-none focus:ring focus:border-blue-300"
-                                placeholder="Department" />
-                            @error('department') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+                        <div class="col-span-6 sm:col-span-3">
+                            <x-jet-label for="department" value="{{ __('Department') }}" />
+                            <x-jet-input wire:model.lazy="department" class="block w-full mt-1" type="text" />
+                            <x-jet-input-error class="block w-full mt-1" for="department" />
+                        </div>
+                        <div class="col-span-6 sm:col-span-3">
+                            <x-jet-label for="phone" value="{{ __('Phone') }}" />
+                            <x-jet-input wire:model.lazy="phone" class="block w-full mt-1" type="text" />
+                            <x-jet-input-error class="block w-full mt-1" for="phone" />
                         </div>
                     </div>
 
                     <div class="flex justify-between my-3">
-
-                        <div class="flex justify-between my-3">
-                            <div class="flex mx-2">
-                                <span class="text-gray-700 mr-12">Gender</span>
-                                <label class="inline-flex items-center">
-                                    <input type="radio" class="form-radio focus:ring-white" wire:model="gender"
-                                        value="Male">
-                                    <span class="ml-2">Male</span>
-                                </label>
-                                <label class="inline-flex items-center ml-6">
-                                    <input type="radio" class="form-radio focus:ring-white" wire:model="gender"
-                                        value="Female">
-                                    <span class="ml-2">Female</span>
-                                </label>
-                            </div>
+                        <div class="flex mx-2">
+                            <span class="text-gray-700 mr-12">Gender</span>
+                            <label class="inline-flex items-center">
+                                <input type="radio" class="form-radio focus:ring-white" wire:model="gender"
+                                    value="Male">
+                                <span class="ml-2">Male</span>
+                            </label>
+                            <label class="inline-flex items-center ml-6">
+                                <input type="radio" class="form-radio focus:ring-white" wire:model="gender"
+                                    value="Female">
+                                <span class="ml-2">Female</span>
+                            </label>
                         </div>
                     </div>
 

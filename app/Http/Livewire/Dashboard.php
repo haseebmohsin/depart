@@ -3,7 +3,9 @@
 namespace App\Http\Livewire;
 
 use App\Models\Traveler;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -38,6 +40,8 @@ class Dashboard extends Component
     public $allMales = false;
     public $allFemales = false;
 
+    protected $qrCode;
+
     public function render()
     {
         if ($this->searchQuery) {
@@ -61,6 +65,7 @@ class Dashboard extends Component
 
         return view('livewire.dashboard', [
             'travelers' => $travelers,
+            'qrCode' => $this->qrCode,
             'newRequestsCount' => Traveler::where('is_printed', 0)->count(),
             'allRecordsCount' => Traveler::count(),
             'allMalesCount' => Traveler::where('gender', 'male')->count(),
@@ -133,5 +138,14 @@ class Dashboard extends Component
     {
         $this->cardFront = false;
         $this->cardBack = true;
+
+        $traveler = Traveler::where('id', $id)->first();
+        $dataArray = "
+            Name: $traveler->name
+            
+            Secrete: $traveler->secret
+        ";
+
+        $this->qrCode = QrCode::size(150)->color(45, 70, 130)->generate($dataArray);
     }
 }

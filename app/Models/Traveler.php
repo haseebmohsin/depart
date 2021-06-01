@@ -19,10 +19,12 @@ class Traveler extends Model
         'system_id',
         'department',
         'challan',
+        'phone',
         'gender',
         'shift',
         'route_no',
         'stop_name',
         'photo',
+        'secret',
     ];
 }

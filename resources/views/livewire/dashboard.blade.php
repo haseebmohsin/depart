@@ -318,10 +318,10 @@
                 <div class="flex w-full py-4 px-6">
                     <!-- card Front -->
                     @if ( $cardFront )
-                    <div class="bg-red-300 p-4 mr-1" id="card">
+                    <div class="bg-red-300 p-4" id="card">
                         <div class="flex w-full">
                             <div class="w-1/4">
-                                <img src="https://fakeimg.pl/50/" alt="logo">
+                                <img src="{{ asset('images/depart-logo.png')}}" alt="logo" width="100" height="150">
                             </div>
                             <div class="">
                                 <div class="flex">
@@ -374,7 +374,8 @@
                                 </h6>
                             </div>
                             <div class="">
-                                <img src="{{ $photo }}" alt="Photo">
+                                <img src="{{ asset('storage/'.$photo )}}" alt="Photo"
+                                    style="min-width: 150px; max-width:150px; min-height: 150px; max-height:150px;">
                             </div>
                         </div> <!-- Row 2 end -->
                     </div>
@@ -383,10 +384,10 @@
                     @if( $cardBack )
                     <div class="bg-red-300 p-4" id="card">
                         <div class="flex w-full">
-                            <div class="w-1/3 mt-12 mr-4">
-                                <img src="https://fakeimg.pl/150/" alt="QR">
+                            <div class="w-1/3 mt-14 mb-14 mr-4">
+                                {{ $qrCode }}
                             </div>
-                            <div class="mt-4">
+                            <div class="mt-10">
                                 <p class="mb-1">
                                     1. Students are not allowed to travel in university busses without bus pass.
                                 </p>

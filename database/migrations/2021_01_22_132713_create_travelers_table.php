@@ -23,7 +23,9 @@ class CreateTravelersTable extends Migration
             $table->string('system_id')->unique();
             $table->string('department');
             $table->string('gender');
+            $table->string('phone');
             $table->binary('photo');
+            $table->text('secret');
             $table->boolean('is_printed')->default(0);
             $table->timestamps();
         });
