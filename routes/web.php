@@ -21,16 +21,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware(['guest'])->group(function () {
+Route::group(['middleware' => 'guest'], function () {
     Route::get('/', Landing::class)->name('landing');
     Route::get('/travelers', Travelers::class)->name('travelers');
     Route::get('/download/challan', [Travelers::class, 'downloadChallan'])->name('downloadChallan');
 });
 
-Route::middleware(['auth:sanctum'])->group(function () {
+Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
     Route::get('/driversConductors', DriversConductors::class)->name('driversConductors');
     Route::get('/driverConductorForm', DriverConductorForm::class)->name('driverConductorForm');
     Route::get('/buses', Buses::class)->name('buses');
     Route::get('/sendMessage', SendNotification::class)->name('sendMessage');
 });
+
+
+// Route::middleware(['auth:sanctum'])->group(function () {
+
+// });

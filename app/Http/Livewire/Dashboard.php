@@ -144,7 +144,7 @@ class Dashboard extends Component
             Name: $traveler->name
             System Id: $traveler->system_id
             Department: $traveler->department
-            Secrete: $traveler->secret
+            Secret:_$traveler->secret
         ";
 
         $this->qrCode = QrCode::size(150)->color(45, 70, 130)->generate($dataArray);

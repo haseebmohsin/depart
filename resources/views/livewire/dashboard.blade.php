@@ -304,7 +304,7 @@
             style="z-index: 999 !important;">
             <!-- modal -->
             <div id="modal"
-                class="pacity-0 transform -translate-y-full scale-150  relative w-10/12 md:w-1/2 h-1/2 md:h-3/4 bg-white rounded shadow-lg transition-transform duration-300">
+                class="opacity-0 transform -translate-y-full scale-150  relative w-10/12 md:w-1/2 h-1/2 md:h-3/4 bg-white rounded shadow-lg transition-transform duration-300">
                 <!-- button close -->
                 <button onclick="openModal(false)"
                     class="absolute -top-3 -right-3 bg-red-500 hover:bg-red-600 text-2xl w-10 h-10 rounded-full focus:outline-none text-white">

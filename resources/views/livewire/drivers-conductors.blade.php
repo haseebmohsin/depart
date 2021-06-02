@@ -8,7 +8,7 @@
         <!-- Main content right side -->
         <main class="h-full overflow-y-auto lg:ml-64">
             <div class="px-10 pt-2 pb-16 mx-auto grid">
-                <h2 class="mt-6 mb-4 ml-1 text-2xl font-semibold text-gray-700">
+                <h2 class="mt-4 mb-2 ml-1 text-2xl font-semibold text-gray-700">
                     @if($drivers && ! $searchQuery)
                     Drivers
                     @endif
