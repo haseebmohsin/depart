@@ -36,7 +36,7 @@ class DriverConductorForm extends Component
             'contact' => $this->contact,
             'address' => $this->address,
             'occupation' => $this->occupation,
-            'password' => Hash::make($this->occupation),
+            'password' => Hash::make($this->password),
         ])) {
             return redirect()->route('driversConductors');
         }
@@ -44,6 +44,6 @@ class DriverConductorForm extends Component
 
     public function render()
     {
-        return view('livewire.driver-conductor-form')->layout('layouts.guest');
+        return view('livewire.driver-conductor-form');
     }
 }

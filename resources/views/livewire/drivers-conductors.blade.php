@@ -67,7 +67,7 @@
                     <div class="w-1/2 relative text-gray-600">
                         <input wire:model="searchQuery"
                             class="w-full border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-md focus:outline-none"
-                            placeholder="Search by web address" autocomplete="off" />
+                            placeholder="Search by Username" autocomplete="off" />
                         <button type="submit" class="absolute right-0 top-0 mt-3 mr-4">
                             <svg class="text-gray-600 h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg"
                                 xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px"

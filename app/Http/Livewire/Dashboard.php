@@ -137,16 +137,10 @@ class Dashboard extends Component
     public function printCardBack($id)
     {
         $this->cardFront = false;
-        $this->cardBack = true;
-
+        
         $traveler = Traveler::where('id', $id)->first();
-        $dataArray = "
-            Name: $traveler->name
-            System Id: $traveler->system_id
-            Department: $traveler->department
-            Secret:_$traveler->secret
-        ";
-
-        $this->qrCode = QrCode::size(150)->color(45, 70, 130)->generate($dataArray);
+        $data = " Name: $traveler->name \n System Id: $traveler->system_id \n Department: $traveler->department \n\n Secret:_$traveler->secret";
+        $this->qrCode = QrCode::size(150)->color(45, 70, 130)->generate($data);
+        $this->cardBack = true;
     }
 }

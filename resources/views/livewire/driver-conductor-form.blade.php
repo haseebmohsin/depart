@@ -1,4 +1,4 @@
-<div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-10">
+<div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-3">
     <main class="container mx-auto max-w-screen-lg h-full">
         <form wire:submit.prevent="formSubmit">
             <article aria-label="File Upload Modal" class="flex flex-col bg-white shadow-xl rounded-md">
@@ -21,21 +21,22 @@
                             <x-jet-input-error class="block w-full mt-1" for="cnic" />
                         </div>
                         <div class="col-span-6 sm:col-span-3">
-                            <x-jet-label for="contact" value="{{ __('Contact') }}" />
-                            <x-jet-input wire:model.lazy="contact" class="block w-full mt-1" type="text" />
-                            <x-jet-input-error class="block w-full mt-1" for="contact" />
-                        </div>
-                        <div class="col-span-6 sm:col-span-3">
                             <x-jet-label for="address" value="{{ __('Address') }}" />
                             <x-jet-input wire:model.lazy="address" class="block w-full mt-1" type="text" />
                             <x-jet-input-error class="block w-full mt-1" for="address" />
                         </div>
                         <div class="col-span-6 sm:col-span-3">
+                            <x-jet-label for="contact" value="{{ __('Contact') }}" />
+                            <x-jet-input wire:model.lazy="contact" class="block w-full mt-1" type="text" />
+                            <x-jet-input-error class="block w-full mt-1" for="contact" />
+                        </div>
+                        <div class="col-span-6 sm:col-span-3">
                             <x-jet-label for="password" value="{{ __('Password') }}" />
-                            <x-jet-input wire:model.lazy="password" class="block w-full mt-1" type="text" />
+                            <x-jet-input wire:model.lazy="password" class="block w-full mt-1" type="password" />
                             <x-jet-input-error class="block w-full mt-1" for="password" />
                         </div>
                     </div>
+
                     <div class="flex justify-between my-6">
                         <div class="flex mx-2">
                             <span class="text-gray-700 mr-12"> Occupation </span>

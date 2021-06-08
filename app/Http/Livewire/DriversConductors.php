@@ -31,7 +31,7 @@ class DriversConductors extends Component
 
         if ($this->searchQuery && $this->search) {
             $searchQuery = '%' . $this->searchQuery . '%';
-            $staffs = DriverConductor::where('name', 'like', $searchQuery)->paginate(20);
+            $staffs = DriverConductor::where('user_name', 'like', $searchQuery)->paginate(20);
         } elseif ($this->drivers) {
             $staffs = DriverConductor::where('occupation', 'driver')->paginate(20);
         } elseif ($this->conductors) {

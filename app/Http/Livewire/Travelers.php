@@ -287,7 +287,7 @@ class Travelers extends Component
     public function downloadChallan()
     {
         $pdf = PDF::loadView('components.challan-form');
-        return $pdf->stream('Bus-Fee-Challan.pdf');
+        return $pdf->download('Bus-Fee-Challan.pdf');
     }
 
     public function render()

@@ -17,10 +17,10 @@
                 <thead>
                     <tr
                         class="text-xs font-semibold tracking-wide text-left text-gray-700 uppercase border-t border-b dark:border-gray-700 bg-gray-400">
-                        <th class="px-4 py-3 break-normal">Evening Time</th>
-                        <th class="px-4 py-3">Evening Stop</th>
+                        <th class="px-4 py-3 break-normal">Morning Stop</th>
                         <th class="px-4 py-3">Morning Time</th>
-                        <th class="px-4 py-3">Morning Stop</th>
+                        <th class="px-4 py-3">Evening Stop</th>
+                        <th class="px-4 py-3">Evening Time</th>
                         @auth
                         <th class="px-4 py-3">Actions</th>
                         @endauth
@@ -31,11 +31,7 @@
                     <tr class="text-gray-700 hover:bg-gray-50">
                         @if($editMode && $route->id === $editModeId )
                         <td class="px-4 py-3 text-sm @auth 'border-r' @endauth">
-                            <input wire:model.lazy="evening_time" class="border-2 border-gray-200 bg-white p-1"
-                                autocomplete="off" />
-                        </td>
-                        <td class="px-4 py-3 text-sm @auth 'border-r' @endauth">
-                            <input wire:model.lazy="evening_stop" class="border-2 border-gray-200 bg-white p-1"
+                            <input wire:model.lazy="morning_stop" class="border-2 border-gray-200 bg-white p-1"
                                 autocomplete="off" />
                         </td>
                         <td class="px-4 py-3 text-sm @auth 'border-r' @endauth">
@@ -43,7 +39,11 @@
                                 autocomplete="off" />
                         </td>
                         <td class="px-4 py-3 text-sm @auth 'border-r' @endauth">
-                            <input wire:model.lazy="morning_stop" class="border-2 border-gray-200 bg-white p-1"
+                            <input wire:model.lazy="evening_stop" class="border-2 border-gray-200 bg-white p-1"
+                                autocomplete="off" />
+                        </td>
+                        <td class="px-4 py-3 text-sm @auth 'border-r' @endauth">
+                            <input wire:model.lazy="evening_time" class="border-2 border-gray-200 bg-white p-1"
                                 autocomplete="off" />
                         </td>
                         <td class="px-4 py-3 text-sm @auth 'border-r' @endauth">
@@ -54,16 +54,16 @@
                         </td>
                         @else
                         <td class="px-4 py-3 text-sm @auth 'border-r' @endauth">
-                            {{ $route->evening_time }}
-                        </td>
-                        <td class="px-4 py-3 text-sm @auth 'border-r' @endauth">
-                            {{ $route->evening_stop }}
+                            {{ $route->morning_stop }}
                         </td>
                         <td class="px-4 py-3 text-sm @auth 'border-r' @endauth">
                             {{ $route->morning_time }}
                         </td>
                         <td class="px-4 py-3 text-sm @auth 'border-r' @endauth">
-                            {{ $route->morning_stop }}
+                            {{ $route->evening_stop }}
+                        </td>
+                        <td class="px-4 py-3 text-sm @auth 'border-r' @endauth">
+                            {{ $route->evening_time }}
                         </td>
                         @auth
                         <td class="px-4 py-3 text-sm">
@@ -96,11 +96,7 @@
                     <tr class="text-gray-700 hover:bg-gray-50">
                         @if($addNewStopFields)
                         <td class="px-4 py-3 text-sm">
-                            <input wire:model.lazy="evening_time" class="border-2 border-gray-200 bg-white p-1"
-                                autocomplete="off" />
-                        </td>
-                        <td class="px-4 py-3 text-sm">
-                            <input wire:model.lazy="evening_stop" class="border-2 border-gray-200 bg-white p-1"
+                            <input wire:model.lazy="morning_stop" class="border-2 border-gray-200 bg-white p-1"
                                 autocomplete="off" />
                         </td>
                         <td class="px-4 py-3 text-sm">
@@ -108,7 +104,11 @@
                                 autocomplete="off" />
                         </td>
                         <td class="px-4 py-3 text-sm">
-                            <input wire:model.lazy="morning_stop" class="border-2 border-gray-200 bg-white p-1"
+                            <input wire:model.lazy="evening_stop" class="border-2 border-gray-200 bg-white p-1"
+                                autocomplete="off" />
+                        </td>
+                        <td class="px-4 py-3 text-sm">
+                            <input wire:model.lazy="evening_time" class="border-2 border-gray-200 bg-white p-1"
                                 autocomplete="off" />
                         </td>
                         <td class="px-4 py-3 text-sm">

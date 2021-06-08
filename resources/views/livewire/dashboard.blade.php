@@ -8,7 +8,7 @@
         <x-mob-sidebar />
         <!-- Main content right side -->
         <main class="h-full lg:ml-64">
-            <div class="px-10 pt-4 pb-16 mx-auto grid">
+            <div class="px-6 pt-4 pb-16 mx-auto grid">
                 <div class="flex justify-between">
                     <h2 class="mt-2 mb-2 text-2xl font-semibold text-gray-700">
                         @if($newRequests && ! $searchQuery)
@@ -202,7 +202,7 @@
 
                 <!-- New Table -->
                 <div class="w-full overflow-hidden rounded-lg shadow-xs">
-                    <div class="w-full overflow-x-auto">
+                    <div class="w-full overflow-auto">
                         <table class="table-auto w-full whitespace-nowrap">
                             <thead>
                                 <tr
@@ -222,8 +222,9 @@
                                 @foreach( $travelers as $traveler )
                                 <tr class="text-gray-700">
                                     <td class="px-4 py-3">
-                                        <img class="object-cover w-full h-full rounded-full"
-                                            src="{{ asset('storage/'.$traveler->photo )}}" alt="Photo"
+                                        <img x-on:click="$dispatch('img-modal', {  imgModalSrc: '{{ asset('storage/'.$traveler->photo )}}' })"
+                                            class="object-cover w-full h-full rounded-full cursor-pointer"
+                                            src="{{ asset('storage/'.$traveler->photo )}}" alt="photo"
                                             style="width: 40px; height: 40px" />
                                     </td>
                                     <td class="px-4 py-3 text-sm">

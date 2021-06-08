@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Livewire\AddNewStop;
 use App\Http\Livewire\Buses;
 use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\DriverConductorForm;
@@ -8,6 +7,7 @@ use App\Http\Livewire\DriversConductors;
 use App\Http\Livewire\Landing;
 use App\Http\Livewire\SendNotification;
 use App\Http\Livewire\Travelers;
+use App\Http\Livewire\ChallanView;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,6 +25,7 @@ Route::group(['middleware' => 'guest'], function () {
     Route::get('/', Landing::class)->name('landing');
     Route::get('/travelers', Travelers::class)->name('travelers');
     Route::get('/download/challan', [Travelers::class, 'downloadChallan'])->name('downloadChallan');
+    Route::get('/challan', ChallanView::class)->name('challan');
 });
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
@@ -34,8 +35,3 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/buses', Buses::class)->name('buses');
     Route::get('/sendMessage', SendNotification::class)->name('sendMessage');
 });
-
-
-// Route::middleware(['auth:sanctum'])->group(function () {
-
-// });

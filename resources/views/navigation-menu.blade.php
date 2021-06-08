@@ -8,7 +8,7 @@
                     <!-- <a href="{{ route('dashboard') }}">
                         <x-jet-application-mark class="block h-9 w-auto" />
                     </a> -->
-                    <img src="images\depart-logo.png" alt="Depart-logo" width="90px" height="90px">
+                    <img src="{{ asset('images/depart-logo.png' )}}" alt="Depart" width="90px" height="90px">
                 </div>
 
                 <!-- Navigation Links -->
