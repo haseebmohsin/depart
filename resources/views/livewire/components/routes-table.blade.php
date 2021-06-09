@@ -97,19 +97,19 @@
                         @if($addNewStopFields)
                         <td class="px-4 py-3 text-sm">
                             <input wire:model.lazy="morning_stop" class="border-2 border-gray-200 bg-white p-1"
-                                autocomplete="off" />
+                                autocomplete="off" placeholder="Morning stop" />
                         </td>
                         <td class="px-4 py-3 text-sm">
                             <input wire:model.lazy="morning_time" class="border-2 border-gray-200 bg-white p-1"
-                                autocomplete="off" />
+                                autocomplete="off" placeholder="Morning Time" />
                         </td>
                         <td class="px-4 py-3 text-sm">
                             <input wire:model.lazy="evening_stop" class="border-2 border-gray-200 bg-white p-1"
-                                autocomplete="off" />
+                                autocomplete="off" placeholder="Evening stop" />
                         </td>
                         <td class="px-4 py-3 text-sm">
                             <input wire:model.lazy="evening_time" class="border-2 border-gray-200 bg-white p-1"
-                                autocomplete="off" />
+                                autocomplete="off" placeholder="Evening Time" />
                         </td>
                         <td class="px-4 py-3 text-sm">
                             <a wire:click="$set('addNewStopFields', false)"
