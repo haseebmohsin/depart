@@ -8,6 +8,7 @@ use App\Http\Livewire\Landing;
 use App\Http\Livewire\SendNotification;
 use App\Http\Livewire\Travelers;
 use App\Http\Livewire\ChallanView;
+use App\Http\Livewire\MeterReading;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,4 +35,5 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/driverConductorForm', DriverConductorForm::class)->name('driverConductorForm');
     Route::get('/buses', Buses::class)->name('buses');
     Route::get('/sendMessage', SendNotification::class)->name('sendMessage');
+    Route::get('/meterReadings', MeterReading::class)->name('meterReadings');
 });

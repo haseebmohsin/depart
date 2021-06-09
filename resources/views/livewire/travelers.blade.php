@@ -107,7 +107,7 @@
 
                     <div class="border-dashed border-2 border-gray-400 py-4">
                         <span class="mb-3 ml-3 font-semibold text-gray-900 flex flex-wrap">
-                            Attach your submitted fee challan here!
+                            Attach your paid fee challan here!
                         </span>
                         <div class="flex justify-center items-center">
                             <input type='file' wire:model="challan" />

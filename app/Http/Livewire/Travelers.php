@@ -281,6 +281,7 @@ class Travelers extends Component
             'photo' => $photo_path,
             'secret' => Str::random(16),
         ]);
+        session()->flash('success', "Submitted successfully! Please visit NUML transport office along with your paid fee challan within 24 hours and get your bus pass.");
         return redirect()->route('landing');
     }
 

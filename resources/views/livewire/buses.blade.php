@@ -25,7 +25,7 @@
             </div>
             <!-- CTA -->
             <div class="flex p-2 mb-6 bg-gray-300 rounded-sm shadow-md"></div>
-            <!-- <div class="flex justify-between pt-2 pb-2">
+            <div class="flex justify-between pt-2 pb-2">
                 <div class="w-1/2 relative text-gray-600">
                     <input wire:model="searchQuery"
                         class="w-full border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-md focus:outline-none"
@@ -40,7 +40,15 @@
                         </svg>
                     </button>
                 </div>
-            </div> -->
+                <div>
+                    <div>
+                        <a href="{{ route('meterReadings') }}"
+                            class="px-2 py-2 mr-1 cursor-pointer font-normal text-sm text-white bg-blue-500 rounded-md">
+                            Meter Readings
+                        </a>
+                    </div>
+                </div>
+            </div>
 
             <!-- Routes -->
             <div class="mb-8 mt-4">
