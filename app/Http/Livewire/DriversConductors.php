@@ -11,6 +11,10 @@ class DriversConductors extends Component
     use WithPagination;
     public $searchQuery;
     protected $queryString = ['searchQuery'];
+    protected $listeners = [
+        'drivers' => 'drivers',
+        'conductors' => 'conductors',
+    ];
 
     public $travelersSidebar = false;
     public $driversSidebar = true;
@@ -21,37 +25,46 @@ class DriversConductors extends Component
 
     public function render()
     {
-        if($this->searchQuery){
+        if ($this->searchQuery) {
             $this->search = true;
         }
 
-        if($this->searchQuery && $this->search){
+        if ($this->searchQuery && $this->search) {
             $searchQuery = '%' . $this->searchQuery . '%';
-            $staffs = DriverConductor::where('name', 'like', $searchQuery)->paginate(20);
-        }elseif($this->drivers){
-            $staffs = DriverConductor::where('occupation','driver')->paginate(20);
-        }elseif($this->conductors){
-            $staffs = DriverConductor::where('occupation','conductor')->paginate(20);
-        }else{
-            $staffs = DriverConductor::where('occupation','driver')->paginate(20);
+            $staffs = DriverConductor::where('user_name', 'like', $searchQuery)->paginate(20);
+        } elseif ($this->drivers) {
+            $staffs = DriverConductor::where('occupation', 'driver')->paginate(20);
+        } elseif ($this->conductors) {
+            $staffs = DriverConductor::where('occupation', 'conductor')->paginate(20);
+        } else {
+            $staffs = DriverConductor::where('occupation', 'driver')->paginate(20);
         }
 
-        return view('livewire.drivers-conductors',[
+        return view('livewire.drivers-conductors', [
             'staffs' => $staffs,
-            'driversCount' => DriverConductor::where('occupation','driver')->count(),
-            'conductorsCount' => DriverConductor::where('occupation','conductor')->count(),
+            'driversCount' => DriverConductor::where('occupation', 'driver')->count(),
+            'conductorsCount' => DriverConductor::where('occupation', 'conductor')->count(),
         ]);
     }
 
-    public function drivers(){
+    public function drivers()
+    {
         $this->drivers = true;
         $this->conductors = false;
         $this->search = false;
     }
-    public function conductors(){
+    public function conductors()
+    {
         $this->conductors = true;
         $this->drivers = false;
         $this->search = false;
     }
 
+    public function deleteStaff($id)
+    {
+        $staff = DriverConductor::where('id', $id)->first();
+        if ($staff) {
+            $staff->delete();
+        }
+    }
 }

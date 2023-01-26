@@ -20,6 +20,7 @@ class CreateDriverConductorsTable extends Migration
             $table->string('contact');
             $table->string('occupation');
             $table->string('address');
+            $table->string('password');
             $table->timestamps();
         });
     }

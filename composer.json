@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "barryvdh/laravel-snappy": "^0.4.8",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
@@ -16,9 +17,13 @@
         "laravel/jetstream": "^2.1",
         "laravel/sanctum": "^2.6",
         "laravel/tinker": "^2.5",
-        "livewire/livewire": "^2.0"
+        "livewire/livewire": "^2.4",
+        "simplesoftwareio/simple-qrcode": "~4",
+        "vonage/client": "^2.4"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.5",
+        "beyondcode/laravel-query-detector": "^1.5",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
         "laravel/sail": "^1.0.1",

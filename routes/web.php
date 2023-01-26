@@ -1,9 +1,14 @@
 <?php
 
+use App\Http\Livewire\Buses;
 use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\DriverConductorForm;
 use App\Http\Livewire\DriversConductors;
+use App\Http\Livewire\Landing;
+use App\Http\Livewire\SendNotification;
 use App\Http\Livewire\Travelers;
+use App\Http\Livewire\ChallanView;
+use App\Http\Livewire\MeterReading;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,14 +22,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->middleware('guest')->name('landing');
+Route::group(['middleware' => 'guest'], function () {
+    Route::get('/', Landing::class)->name('landing');
+    Route::get('/travelers', Travelers::class)->name('travelers');
+    Route::get('/download/challan', [Travelers::class, 'downloadChallan'])->name('downloadChallan');
+    Route::get('/challan', ChallanView::class)->name('challan');
+});
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', Dashboard::class)->name('dashboard');
-
-Route::get('/travelers', Travelers::class)->name('travelers');
-
-Route::middleware(['auth:sanctum', 'verified'])->get('/driversConductors', DriversConductors::class )->name('driversConductors');
-Route::middleware(['auth:sanctum', 'verified'])->get('/driverConductorForm', DriverConductorForm::class)->name('driverConductorForm');
-
+Route::group(['middleware' => 'auth:sanctum'], function () {
+    Route::get('/dashboard', Dashboard::class)->name('dashboard');
+    Route::get('/driversConductors', DriversConductors::class)->name('driversConductors');
+    Route::get('/driverConductorForm', DriverConductorForm::class)->name('driverConductorForm');
+    Route::get('/buses', Buses::class)->name('buses');
+    Route::get('/sendMessage', SendNotification::class)->name('sendMessage');
+    Route::get('/meterReadings', MeterReading::class)->name('meterReadings');
+});

@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\DriverConductor;
+use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -10,18 +11,19 @@ class DriverConductorForm extends Component
 {
     use WithFileUploads;
 
-    public $name = '';
-    public $CNIC = '';
-    public $contact = '';
-    public $address = '';
-    public $occupation = '';
+    public $user_name;
+    public $cnic;
+    public $contact;
+    public $address;
+    public $occupation = 'driver';
+    public $password;
 
     protected $rules = [
-        'name' => 'required|string|max:255',
-        'CNIC' => 'required|string|max:255',
-        'contact' => 'required|string|max:255',
+        'user_name' => 'required|string|max:125|unique:driver_conductors',
+        'cnic' => 'required|numeric',
+        'contact' => 'required|numeric',
         'address' => 'required|string|max:255',
-        'occupation' => 'required',
+        'password' => 'required|min:8|max:55',
     ];
 
     public function formSubmit()
@@ -29,11 +31,12 @@ class DriverConductorForm extends Component
         $this->validate();
 
         if (DriverConductor::create([
-            'name' => $this->name,
-            'CNIC' => $this->CNIC,
+            'user_name' => $this->user_name,
+            'cnic' => $this->cnic,
             'contact' => $this->contact,
             'address' => $this->address,
             'occupation' => $this->occupation,
+            'password' => Hash::make($this->password),
         ])) {
             return redirect()->route('driversConductors');
         }
@@ -41,7 +44,6 @@ class DriverConductorForm extends Component
 
     public function render()
     {
-        return view('livewire.driver-conductor-form')->layout('layouts.guest');
+        return view('livewire.driver-conductor-form');
     }
-
 }

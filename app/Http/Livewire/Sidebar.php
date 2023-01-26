@@ -11,6 +11,8 @@ class Sidebar extends Component
     public $allMalesCount;
     public $allFemalesCount;
 
+    public $drivers;
+    public $conductors;
     public $driversCount;
     public $conductorsCount;
 
@@ -19,7 +21,7 @@ class Sidebar extends Component
 
     public function render()
     {
-        return view('livewire.sidebar',[
+        return view('livewire.sidebar', [
             'newRequestsCount' => $this->newRequestsCount,
             'totalRecordsCount' => $this->allRecordsCount,
             'allMalesCount' => $this->allMalesCount,

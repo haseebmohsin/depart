@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Sanctum\HasApiTokens;
 
 class DriverConductor extends Model
 {
     use HasFactory;
+    use HasApiTokens;
 
     /**
      * The attributes that are mass assignable.
@@ -15,10 +17,11 @@ class DriverConductor extends Model
      * @var array
      */
     protected $fillable = [
-        'name',
-        'CNIC',
+        'user_name',
+        'cnic',
         'contact',
         'address',
         'occupation',
+        'password',
     ];
 }

@@ -15,12 +15,17 @@ class CreateTravelersTable extends Migration
     {
         Schema::create('travelers', function (Blueprint $table) {
             $table->id();
+            $table->string('shift');
+            $table->string('route_no');
+            $table->string('stop_name');
+            $table->binary('challan');
             $table->string('name');
-            $table->binary('photo');
             $table->string('system_id')->unique();
             $table->string('department');
             $table->string('gender');
-            $table->string('challan');
+            $table->string('phone');
+            $table->binary('photo');
+            $table->text('secret');
             $table->boolean('is_printed')->default(0);
             $table->timestamps();
         });
