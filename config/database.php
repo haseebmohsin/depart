@@ -46,11 +46,11 @@ return [
         'mysql' => [
             'driver' => 'mysql',
             'url' => env('DATABASE_URL'),
-            'host' => parse_url(env('DATABASE_URL', '127.0.0.1')),
-            'port' => parse_url(env('DATABASE_URL', '3306')),
-            'database' => substr(parse_url(env('DATABASE_URL', 'forge')), 1),
-            'username' => parse_url(env('DATABASE_URL', 'forge')),
-            'password' => parse_url(env('DATABASE_URL', '')),
+            'host' => parse_url(env('DATABASE_URL'), PHP_URL_HOST),
+            'port' => parse_url(env('DATABASE_URL'), PHP_URL_PORT),
+            'database' => substr(parse_url(env('DATABASE_URL'), PHP_URL_PATH), 1),
+            'username' => parse_url(env('DATABASE_URL'), PHP_URL_USER),
+            'password' => parse_url(env('DATABASE_URL'), PHP_URL_PASS),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
@@ -58,9 +58,6 @@ return [
             'prefix_indexes' => true,
             'strict' => true,
             'engine' => null,
-            'options' => extension_loaded('pdo_mysql') ? array_filter([
-                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
-            ]) : [],
         ],
 
         'pgsql' => [
