@@ -45,12 +45,12 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
-            'url' => env('DATABASE_URL'),
-            'host' => parse_url(env('DATABASE_URL'), PHP_URL_HOST),
-            'port' => parse_url(env('DATABASE_URL'), PHP_URL_PORT),
-            'database' => substr(parse_url(env('DATABASE_URL'), PHP_URL_PATH), 1),
-            'username' => parse_url(env('DATABASE_URL'), PHP_URL_USER),
-            'password' => parse_url(env('DATABASE_URL'), PHP_URL_PASS),
+            'url' => env('CLEARDB_DATABASE_URL'),
+            'host' => parse_url(env('CLEARDB_DATABASE_URL'), PHP_URL_HOST),
+            'port' => parse_url(env('CLEARDB_DATABASE_URL'), PHP_URL_PORT),
+            'database' => substr(parse_url(env('CLEARDB_DATABASE_URL'), PHP_URL_PATH), 1),
+            'username' => parse_url(env('CLEARDB_DATABASE_URL'), PHP_URL_USER),
+            'password' => parse_url(env('CLEARDB_DATABASE_URL'), PHP_URL_PASS),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
